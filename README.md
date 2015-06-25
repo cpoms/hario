@@ -24,6 +24,11 @@ def Animal < ActiveRecord::Base
 end
 ```
 
+## Todo
+
+1. Migrate our application-specific tests across to the gem
+2. Do a proper readme (yes, this, fix it)
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/hario/fork )
