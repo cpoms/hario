@@ -1,0 +1,16 @@
+# Logfile created on 2015-06-25 23:10:26 +0100 by logger.rb/44203
+D, [2015-06-25T23:10:27.058465 #74888] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+D, [2015-06-25T23:10:27.088174 #74888] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO "brands" ("name") VALUES (?)  [["name", "Adidas"]]
+D, [2015-06-25T23:10:27.104100 #74888] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mcommit transaction[0m
+D, [2015-06-25T23:10:27.127906 #74888] DEBUG -- :   [1m[35mBrand Load (0.2ms)[0m  SELECT "brands".* FROM "brands" WHERE "brands"."name" = ?  [["name", "Adidas"]]
+D, [2015-06-25T23:10:27.145343 #74888] DEBUG -- :   [1m[36mSQL (15.2ms)[0m  [1mDELETE FROM "brands"[0m
+D, [2015-06-25T23:11:17.882386 #74899] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+D, [2015-06-25T23:11:17.912442 #74899] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO "brands" ("name") VALUES (?)  [["name", "Adidas"]]
+D, [2015-06-25T23:11:17.913038 #74899] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+D, [2015-06-25T23:11:17.939361 #74899] DEBUG -- :   [1m[35mBrand Load (0.2ms)[0m  SELECT "brands".* FROM "brands" WHERE "brands"."name" = ?  [["name", "Adidas"]]
+D, [2015-06-25T23:11:17.941683 #74899] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "brands"[0m
+D, [2015-06-25T23:11:27.792300 #74906] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+D, [2015-06-25T23:11:27.857213 #74906] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO "brands" ("name") VALUES (?)  [["name", "Adidas"]]
+D, [2015-06-25T23:11:27.857824 #74906] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+D, [2015-06-25T23:11:27.885282 #74906] DEBUG -- :   [1m[35mBrand Load (0.2ms)[0m  SELECT "brands".* FROM "brands" WHERE "brands"."name" = ?  [["name", "Adidas"]]
+D, [2015-06-25T23:11:27.887789 #74906] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "brands"[0m
