@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-# Setup
+### Setup
 
 Add `include Hario::Filterable` to your AR model to add the `search` method, for instance (we'll use these classes as examples throughout):
 
@@ -53,7 +53,7 @@ class BrandsController < ApplicationController
 end
 ```
 
-# Filters
+### Filters
 
 The format of `params[:filters]`'s keys is a dot-seperated chain of association(s) -> attribute -> operator, for instance if you wanted to return brands that have products of type "Shoe" you could add the filter:
 
