@@ -5,7 +5,7 @@ ActiveRecord::Schema.define(:version => 1) do
 
   create_table :products, :force => true do |t|
     t.column :name, :string
-    t.column :product_category_id, :integer
+    t.column :category_id, :integer
     t.column :brand_id, :integer
   end
 
