@@ -83,9 +83,17 @@ The available operators are:
 
 - Migrate our application-specific tests across to the gem
 
+## Tests
+
+To run tests:
+
+```
+rake test
+```
+
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/hario/fork )
+1. Fork it ( https://github.com/meritec/hario/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
