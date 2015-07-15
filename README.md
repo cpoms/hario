@@ -24,7 +24,7 @@ Add `include Hario::Filterable` to your AR model to add the `search` method, for
 
 ```ruby
 def Brand < ActiveRecord::Base
-  include Hario::Filterable
+  extend Hario::Filterable
 
   has_many :products
 end

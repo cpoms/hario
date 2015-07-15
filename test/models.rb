@@ -1,12 +1,14 @@
 require 'hario'
 
 class Brand < ActiveRecord::Base
-  include Hario::Filterable
+  extend Hario::Filterable
 
   has_many :products
 end
 
 class Product < ActiveRecord::Base
+  extend Hario::Filterable
+
   belongs_to :brand
   belongs_to :category, class_name: "ProductCategory"
 end

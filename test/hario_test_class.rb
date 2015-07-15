@@ -1,6 +1,6 @@
 require "minitest/autorun"
 
-class Hario::Test < Minitest::Unit::TestCase
+class Hario::Test < Minitest::Test
   def teardown
     DatabaseRewinder.clean
   end

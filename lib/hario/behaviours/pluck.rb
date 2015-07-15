@@ -24,7 +24,7 @@ class PluckParser
       ns.each do |p|
         association_chain, attribute = parse_namespace(p)
 
-        nested_associations = (association_chain << {}).reverse.inject { |v, key| { key => v } }
+        nested_associations = (association_chain.dup << {}).reverse.inject { |v, key| { key => v } }
         @join_clause.deep_merge!(nested_associations)
 
         attribute_table = table_name_from_association_chain(association_chain)

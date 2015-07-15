@@ -20,7 +20,7 @@ class FilterParser
         association_chain, attribute, operator = parse_descriptor(descriptor)
         condition = build_condition(association_chain, attribute, operator, value)
 
-        nested_associations = (association_chain << {}).reverse.inject { |v, key| { key => v } }
+        nested_associations = (association_chain.dup << {}).reverse.inject { |v, key| { key => v } }
         joins = m[0].deep_merge(nested_associations)
         wheres = m[1] + [condition]
         [joins, wheres]
