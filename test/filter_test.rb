@@ -1,6 +1,11 @@
 require_relative 'test_helper'
 
 class FilterTest < Hario::Test
+  def test_test_data_loaded_properly
+    assert Brand.count > 0,
+      "Test data not loaded"
+  end
+
   def test_simple_filter
     filters = { 'name.equals' => "Adidas" }
     brands = Brand.search(filters)

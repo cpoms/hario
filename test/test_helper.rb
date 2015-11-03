@@ -8,7 +8,9 @@ require "models"
 
 ActiveRecord::Base.configurations = YAML.load_file(File.join(File.dirname(__FILE__), 'database.yml'))
 ActiveRecord::Base.establish_connection(ENV['DB'] || :sqlite3)
-load(File.join(File.dirname(__FILE__), "schema.rb"))
+ActiveRecord::Migration.suppress_messages do
+  load(File.join(File.dirname(__FILE__), "schema.rb"))
+end
 
 ActiveRecord::Base.logger = Logger.new(File.join(File.dirname(__FILE__), "debug.log"))
 

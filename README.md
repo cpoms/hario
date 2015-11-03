@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ### Setup
 
-Add `include Hario::Filterable` to your AR model to add the `search` method, for instance (we'll use these classes as examples throughout):
+Add `extend Hario::Filterable` to your AR model to add the `search` method, for instance (we'll use these classes as examples throughout):
 
 ```ruby
 def Brand < ActiveRecord::Base
@@ -46,7 +46,9 @@ class BrandsController < ApplicationController
   respond_to :json
 
   def index
-    @brands = Brand.search(params[:filters])
+    @brands = Brand.search(params[:filters], params[:pluck])
+    # or to only use the filterable functionality
+    # @brands = Brand.search(params[:filters])
 
     respond_with(@brands)
   end
@@ -79,9 +81,23 @@ The available operators are:
 - like (sql like)
 - equals
 
-## Todo
+### Pluck
 
-- Migrate our application-specific tests across to the gem
+Oftentimes you might only need a particular attribute, or a few attributes, from the resource, in which case getting the whole of the resources would be inefficient.
+
+This is where pluck comes in handy, it allows you to specify which attributes you're interested in in the request, reducing the amount of data that has to be retrieved from the database, and more importantly, sent over the wire:
+
+```ruby
+@brands = Brand.search(nil, ["name"])
+# will return an array of hashes containing only the primary key and the name attribute for each brand.
+```
+
+Like filters, you can also pluck associated columns from other models using the dot notation, e.g.:
+
+```ruby
+# assuming Country belongs_to :continent
+@countries = Country.search(nil, ["name", "continent.name"])
+```
 
 ## Tests
 
