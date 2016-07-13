@@ -4,7 +4,8 @@ module Hario
   class FilterParser
     include ParserUtils
 
-    OPERATORS = { lt: '<', gt: '>', lte: '<=', gte: '>=', like: 'like', equals: '=' }
+    OPERATORS = { lt: '<', gt: '>', lte: '<=', gte: '>=', like: 'like', equals: '=', is: 'is' }
+    IS_VALUES = { null: 'NULL', not_null: 'NOT NULL' }
 
     attr_accessor :join_clause, :where_clauses
 
@@ -16,6 +17,7 @@ module Hario
     end
 
     InvalidAttributeError = Class.new(RuntimeError)
+    InvalidValueError     = Class.new(RuntimeError)
 
     private
       def parse_filters
@@ -53,6 +55,11 @@ module Hario
         when :equals
           condition = { attribute => value }
           condition = { attribute_table => condition } if attribute_table
+        when :is
+          value = value.to_sym
+          raise_if_invalid_is_value!(value)
+          condition = ["#{attribute} #{operator} #{IS_VALUES[value]}"]
+          condition[0].prepend("#{attribute_table || @klass.table_name}.")
         else
           operator = OPERATORS[operator]
           condition = ["#{attribute} #{operator} ?", value]
@@ -60,6 +67,13 @@ module Hario
         end
 
         condition
+      end
+
+      def raise_if_invalid_is_value!(value)
+        unless IS_VALUES[value]
+          raise InvalidValueError,
+            "When using 'is', value must be one of #{IS_VALUES.keys.join(', ')}"
+        end
       end
 
       def raise_if_invalid_attribute!(attribute, end_model)
