@@ -16,4 +16,16 @@ class PluckTest < Hario::Test
     assert_equal ["id", "name", "brands.name"], products.flat_map(&:keys).uniq,
         "Pluck not returning correct attributes with association pluck"
   end
+
+  def test_hidden_column_pluck
+    assert_raises Hario::PluckParser::InvalidAttributeError do
+      Product.search(nil, %w( hidden_column ))
+    end
+  end
+
+  def test_hidden_column_pluck_with_join
+    assert_raises Hario::PluckParser::InvalidAttributeError do
+      Brand.search(nil, %w( products.hidden_column ))
+    end
+  end
 end

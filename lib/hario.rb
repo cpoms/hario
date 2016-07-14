@@ -4,6 +4,10 @@ require "hario/behaviours/pluck"
 
 module Hario
   module Filterable
+    HARIO_APPLY_TYPES = %w( filters pluck ).map(&:to_sym)
+
+    attr_reader :hario_attributes_list
+
     def search(filters, pluck = nil)
       s = all
       s = s.apply_filters(filters) if filters
@@ -32,5 +36,22 @@ module Hario
     def hash_pluck(*keys)
       pluck(*keys).map{ |vals| Hash[keys.zip(Array(vals))] }
     end
+
+    def hario_attributes(types, only: nil, except: nil)
+      @hario_attributes_list ||= {}
+      Array.wrap(types).each do |t|
+        raise_if_not_hario_type!(t)
+        @hario_attributes_list[t] =
+          { only: Array.wrap(only), except: Array.wrap(except) }
+      end
+    end
+
+    private
+      def raise_if_not_hario_type!(type)
+        unless HARIO_APPLY_TYPES.include?(type)
+          raise ArgumentError, "#{type} is not one of " \
+            "#{HARIO_APPLY_TYPES.map(&:inspect).join(', ')}"
+        end
+      end
   end
 end

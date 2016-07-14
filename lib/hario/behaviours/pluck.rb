@@ -20,10 +20,16 @@ module Hario
 
         ns, no_ns = @pluck.partition{ |p| p.include?('.') }
 
-        no_ns.each{ |p| @pluck_clause << [@klass.table_name, p].join('.') }
+        no_ns.each do |p|
+          raise_if_unlisted_attribute!(:pluck, @klass, p)
+          @pluck_clause << [@klass.table_name, p].join('.')
+        end
 
         ns.each do |p|
           association_chain, attribute = parse_namespace(p)
+
+          end_model = end_model_from_association_chain(association_chain)
+          raise_if_unlisted_attribute!(:pluck, end_model, attribute)
 
           nested_associations = (association_chain.dup << {}).reverse.inject { |v, key| { key => v } }
           @join_clause.deep_merge!(nested_associations)
