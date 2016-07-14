@@ -20,3 +20,6 @@ Product.create!(
   category_id: @tee.id,
   name: "Hamburg"
 )
+Product.create!(
+  name: 'Nil product'
+)
