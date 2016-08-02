@@ -74,4 +74,20 @@ class FilterTest < Hario::Test
       Product.search(filters)
     end
   end
+
+  def test_hidden_column_filter
+    filters = { 'hidden_column.equals' => 5 }
+
+    assert_raises Hario::FilterParser::InvalidAttributeError do
+      Product.search(filters)
+    end
+  end
+
+  def test_hidden_column_filter_with_join
+    filters = { 'products.hidden_column.equals' => 5 }
+
+    assert_raises Hario::FilterParser::InvalidAttributeError do
+      Brand.search(filters)
+    end
+  end
 end

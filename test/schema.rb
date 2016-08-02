@@ -8,6 +8,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.column :name, :string
     t.column :category_id, :integer
     t.column :brand_id, :integer
+    t.column :hidden_column, :integer
     t.timestamps null: false
   end
 

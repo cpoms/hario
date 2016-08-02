@@ -16,7 +16,6 @@ module Hario
       parse_filters
     end
 
-    InvalidAttributeError = Class.new(RuntimeError)
     InvalidValueError     = Class.new(RuntimeError)
 
     private
@@ -49,6 +48,7 @@ module Hario
           end_model = @klass
         end
 
+        raise_if_unlisted_attribute!(:filters, end_model, attribute)
         raise_if_invalid_attribute!(attribute, end_model)
 
         case operator
