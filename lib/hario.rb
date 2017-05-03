@@ -8,10 +8,12 @@ module Hario
 
     attr_reader :hario_attributes_list
 
-    def search(filters, pluck = nil)
+    def search(filters, pluck = [])
+      pluck = pluck.reject{ |p| p.nil? || p.empty? }
+
       s = all
       s = s.apply_filters(filters) if filters
-      s = s.apply_pluck(pluck) if pluck
+      s = s.apply_pluck(pluck) if pluck.any?
       s
     end
 

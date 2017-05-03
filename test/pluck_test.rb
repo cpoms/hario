@@ -28,4 +28,11 @@ class PluckTest < Hario::Test
       Brand.search(nil, %w( products.hidden_column ))
     end
   end
+
+  def test_empty_string_ignored
+    Product.search(nil, [""])
+
+    # no exception
+    assert true
+  end
 end
