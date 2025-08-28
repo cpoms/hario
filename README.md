@@ -80,6 +80,7 @@ The available operators are:
 - gte (greater than or equal)
 - like (sql like)
 - equals
+- in
 
 ### Pluck
 
