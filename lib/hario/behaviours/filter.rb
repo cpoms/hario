@@ -4,7 +4,7 @@ module Hario
   class FilterParser
     include ParserUtils
 
-    OPERATORS = { lt: '<', gt: '>', lte: '<=', gte: '>=', like: 'like', equals: '=', is: 'is' }
+    OPERATORS = { lt: '<', gt: '>', lte: '<=', gte: '>=', like: 'like', equals: '=', is: 'is', in: 'in' }
     IS_VALUES = { null: 'NULL', not_null: 'NOT NULL' }
 
     attr_accessor :join_clause, :where_clauses
@@ -52,7 +52,7 @@ module Hario
         raise_if_invalid_attribute!(attribute, end_model)
 
         case operator
-        when :equals
+        when :equals, :in
           condition = { attribute => value }
           condition = { attribute_table => condition } if attribute_table
         when :is
