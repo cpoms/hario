@@ -52,7 +52,11 @@ module Hario
         raise_if_invalid_attribute!(attribute, end_model)
 
         case operator
-        when :equals, :in
+        when :equals
+          condition = { attribute => value }
+          condition = { attribute_table => condition } if attribute_table
+        when :in
+          value = value.split(',').map(&:strip) if value.is_a?(String)
           condition = { attribute => value }
           condition = { attribute_table => condition } if attribute_table
         when :is
